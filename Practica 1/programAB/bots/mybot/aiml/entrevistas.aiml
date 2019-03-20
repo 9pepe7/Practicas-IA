@@ -163,4 +163,32 @@
   <template>La empresa es una empresa puntera en el sector, y el puesto es uno a nivel basico.</template>
 </category>
 
+<!-- 17. Que haces cuando consideras que tu jefe no tiene la razón -->
+<category>
+  <pattern>QUE HACES CUANDO CONSIDERAS QUE TU JEFE NO TIENE LA RAZON</pattern>
+  <template>Intentar comunicarselo de la forma mas asertiva posible.</template>
+</category>
+<category>
+  <pattern>* jefe * razon ^</pattern>
+  <template><srai>QUE HACES CUANDO CONSIDERAS QUE TU JEFE NO TIENE LA RAZON</srai></template>
+</category>
+<category>
+  <pattern>* jefe * equivoca ^</pattern>
+  <template><srai>QUE HACES CUANDO CONSIDERAS QUE TU JEFE NO TIENE LA RAZON</srai></template>
+</category>
+
+<!-- 18. Por que deberiamos escogerte a ti -->
+<category>
+  <pattern>POR QUE DEBERIAMOS ESCOGERTE A TI</pattern>
+  <template>Creo que la oferta se ajusta a mi perfil, y estoy dispuesto a adaptarme al puesto y aprender todo lo posible.</template>
+</category>
+<category>
+  <pattern>* escogerte ^</pattern>
+  <template><srai>POR QUE DEBERIAMOS ESCOGERTE A TI</srai></template>
+</category>
+<category>
+  <pattern>* elegirte ^</pattern>
+  <template><srai>POR QUE DEBERIAMOS ESCOGERTE A TI</srai></template>
+</category>
+
 </aiml>
