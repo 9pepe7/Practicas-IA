@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+<!--
+  * y _ Comodines una o más palabras
+  ^ y # Comodines cero o más palabras
+  Prio: # > _ > exacto > ^ > *
+  $ es prio max
+  <star/> reproduce comodín en el template (soy * -> "Hola <star/>")
+  <star index=“x”/> para varios comodines
+  <think></think> para evitar eco
+  <srai></srai> llama a otro pattern
+-->
+<!--
+  Propiedades del bot:
+    Uso -> <bot name="x"/>
+    x es la propiedad almacenada en config/properties.txt
+
+  Variables globales:
+    Comunes a variass reglas
+    Declarar -> <set name=“x”>value</set>
+    x es el nombre de la variable
+    Uso -> <get name="x"/>
+
+  Variables locales:
+  Su ambito es el template
+  Declarar -> <set var=“x”>value</set>
+  Uso -> <get var=“x”/>
+-->
+<!--
+  Sets:
+    El nombre del fichero txt denomina al set
+    Un valor en cada linea
+    Acceso -> <set>nombredelset</set>
+
+  Maps:
+    formato KEY:cadena
+    Acceso -> <map name=“nombredelmap”>KEY</map>
+-->
+<!--
+  El tag <that>
+  Se sitúa entre pattern y template
+  Exige que la pregunta that haya sido la última
+
+  Topic:
+    <set name=“topic”> fija el tema
+    Variable global predefininida
+    <topic name=“x”> preguntas y respuestas </topic>
+
+  Random:
+  <random>
+    <li> cosa</li>
+    <li>cosa2</li>
+  </random>
+
+  Switch condicional:
+    <condition var="x"> (tambien vale con set)
+      <li value="x1"> cosas </li
+      <li><value>variable</value> cosas </li>
+      <li> por defecto</li
+  Ciclos:
+  Poco útil y engorroso
+-->
+
+<!-- Primera regla -->
+<category>
+  <pattern>Hola *</pattern>
+  <template>Hola, que tal?</template>
+</category>
+<category>
+  <pattern>Hola</pattern>
+  <template>Hola de nuevo, que tal?</template>
+</category>
+<category>
+  <pattern>^ que tal tu</pattern>
+  <template>Estoy genial!!! </template>
+</category>
+<category>
+  <pattern>^ me llamo *</pattern>
+  <template>
+    <set name="nombre"><star index="2"/></set>
+    Pues <get name="nombre"/> es un bonito nombre.
+  </template>
+</category>
+<category>
+  <pattern>Cual es mi nombre</pattern>
+  <template>
+    <condition name="nombre">
+      <li value="unknown">Aun no lo sé.</li>
+      <li>Tu nombre es <get name="nombre"/></li>
+    </condition>
+  </template>
+</category>
+<category>
+  <pattern>Mi color favorito es el *</pattern>
+  <template>
+    <think> <set var="color"><star/></set> </think>
+    El <get var="color"/> es un color que no me gusta.
+    </template>
+</category>
+<category>
+  <pattern>* mi nombre</pattern>
+  <template><srai>CUAL ES MI NOMBRE</srai></template>
+</category>
+<category>
+  <pattern>^ como me llamo</pattern>
+  <template><srai>CUAL ES MI NOMBRE</srai></template>
+</category>
+<category>
+  <pattern>^ cafe ^</pattern>
+  <template>Te gusta el <set name="topic"> cafe</set> </template>
+</category>
+<topic name="cafe">
+  <category>
+  <pattern>Si</pattern>
+  <that>TE GUSTA EL CAFE</that>
+  <template>Lo prefieres solo o con leche</template>
+  </category>
+  <category>
+    <pattern>Antonio</pattern>
+    <template>Manolo</template>
+  </category>
+</topic>
+<!-- Capitales, si la sé, si no, y aprender -->
+<category>
+  <pattern>Cual es la capital de <set>pais</set></pattern>
+  <template>La capital de <star/> es <map name="capital"><star/></map>.</template>
+</category>
+<category>
+  <pattern>Cual es la capital de *</pattern>
+  <template>No lo se.</template>
+</category>
+<category>
+  <pattern>la capital de * es *</pattern>
+  <template>
+    <set var="cap"><srai>CUAL ES LA CAPITAL DE <star/></srai></set>
+    <condition var="cap">
+      <li value="NO LO SE.">
+        <learn>
+          <category>
+            <pattern>CUAL ES LA CAPITAL DE <eval><star/></eval></pattern>
+            <template>
+              La capital de <eval><star/></eval> es <eval><star index="2"/></eval>
+            </template>
+          </category>
+        </learn>
+        Recordare que la capital de <star/> es <star index="2"/>.
+      </li>
+      <li> Ya lo sabia. </li>
+    </condition>
+  </template>
+</category>
+</aiml>
