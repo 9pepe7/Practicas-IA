@@ -1,0 +1,9 @@
+/home/acer/Desktop/Practicas-IA/Practica 2/practica2/CMakeFiles/rebuild_cache.dir
+/home/acer/Desktop/Practicas-IA/Practica 2/practica2/CMakeFiles/edit_cache.dir
+/home/acer/Desktop/Practicas-IA/Practica 2/practica2/CMakeFiles/BelkanSG.dir
+/home/acer/Desktop/Practicas-IA/Practica 2/practica2/CMakeFiles/GLUILib.dir
+/home/acer/Desktop/Practicas-IA/Practica 2/practica2/CMakeFiles/Belkan.dir
+/home/acer/Desktop/Practicas-IA/Practica 2/practica2/CMakeFiles/obj3DLib.dir
+/home/acer/Desktop/Practicas-IA/Practica 2/practica2/CMakeFiles/motorLib.dir
+/home/acer/Desktop/Practicas-IA/Practica 2/practica2/CMakeFiles/modelosBelkanLib.dir
+/home/acer/Desktop/Practicas-IA/Practica 2/practica2/CMakeFiles/comportamientosLib.dir
