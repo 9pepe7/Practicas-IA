@@ -14,23 +14,23 @@ Action ComportamientoJugador::think(Sensores sensores) {
 
 	if (sensores.nivel != 4){ // Estoy en el nivel 1
 		if (sensores.mensajeF != -1){ // Primer movimiento
-			fil = sensores.mensajeF;
+			fil = sensores.mensajeF; // Set donde estoy
 			col = sensores.mensajeC;
 			brujula = 0; // 0 corresponde con Norte
 			ultimaAccion=actIDLE;
 
-			actual.fila = fil;
+			actual.fila = fil; // Set donde estoy vol.2
 			actual.columna = col;
 			actual.orientacion = brujula;
 
-			destino.fila = sensores.destinoF;
+			destino.fila = sensores.destinoF; //  Set a donde voy
 			destino.columna = sensores.destinoC;
 		}
 	}
 	else { // Estoy en el nivel 2
 		cout << "Aún no implementado el nivel 2" << endl;
 	}
-	switch(ultimaAccion){
+	switch(ultimaAccion){ // Corregir fil y brujula con respecto a la ultima accion
 		case actTURN_R: brujula=(brujula+1)%4; break;
 		case actTURN_L: brujula=(brujula+3)%4; break;
 		case actFORWARD:
@@ -45,6 +45,11 @@ Action ComportamientoJugador::think(Sensores sensores) {
 	cout << "Fila: " << fil << " Col: " << col << " Or: " << brujula << endl;
 
 	//Ha cambiado el destino?
+	if(sensores.destinoF != destino.fila || sensores.destinoC != destino.columna){
+		destino.fila=sensores.destinoF; // Actualizamos destino
+		destino.columna=sensores.destinoC;
+		hayPlan=false;
+	}
 
 	if(!hayPlan){
 		actual.fila=fil;
