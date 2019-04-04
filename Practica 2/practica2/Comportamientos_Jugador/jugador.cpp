@@ -11,14 +11,13 @@
 // que se piden en la práctica. Tiene como entrada la información de los
 // sensores y devuelve la acción a realizar.
 Action ComportamientoJugador::think(Sensores sensores) {
-	Action accion = actIDLE;
-	// Estoy en el nivel 1
 
-	if (sensores.nivel != 4){
-		if (sensores.mensajeF != -1){
+	if (sensores.nivel != 4){ // Estoy en el nivel 1
+		if (sensores.mensajeF != -1){ // Primer movimiento
 			fil = sensores.mensajeF;
 			col = sensores.mensajeC;
 			brujula = 0; // 0 corresponde con Norte
+			ultimaAccion=actIDLE;
 
 			actual.fila = fil;
 			actual.columna = col;
@@ -27,16 +26,46 @@ Action ComportamientoJugador::think(Sensores sensores) {
 			destino.fila = sensores.destinoF;
 			destino.columna = sensores.destinoC;
 		}
-
-		bool hay_plan = pathFinding (sensores.nivel, actual, destino, plan);
-
 	}
-	else {
-		// Estoy en el nivel 2
+	else { // Estoy en el nivel 2
 		cout << "Aún no implementado el nivel 2" << endl;
 	}
+	switch(ultimaAccion){
+		case actTURN_R: brujula=(brujula+1)%4; break;
+		case actTURN_L: brujula=(brujula+3)%4; break;
+		case actFORWARD:
+			switch(brujula){
+				case 0: fil--; break;
+				case 1: col++; break;
+				case 2: fil++; break;
+				case 3: col--; break;
+			}
+			break;
+	}
+	cout << "Fila: " << fil << " Col: " << col << " Or: " << brujula << endl;
 
-  return accion;
+	//Ha cambiado el destino?
+
+	if(!hayPlan){
+		actual.fila=fil;
+		actual.columna=col;
+		actual.orientacion=brujula;
+		hayPlan=pathFinding(sensores.nivel,actual,destino,plan);
+	}
+	Action sigAccion;
+	if(hayPlan && plan.size()>0){
+		sigAccion=plan.front();
+		plan.erase(plan.begin());
+	} else{
+		// Sistema reactivo
+		if(sensores.terreno[2]=='P' || sensores.terreno[2]=='M' || sensores.terreno[2]=='D' || sensores.superficie[2]=='a')
+			sigAccion=actTURN_R;
+		else
+			sigAccion = actFORWARD;
+	}
+
+	ultimaAccion=sigAccion;
+  return sigAccion;
 }
 
 

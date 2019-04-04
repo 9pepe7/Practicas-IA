@@ -21,6 +21,7 @@ class ComportamientoJugador : public Comportamiento {
       destino.columna = -1;
       destino.orientacion = -1;
       ultimaAccion = actIDLE;
+      hayPlan=false; // Mirar abajo
     }
     ComportamientoJugador(std::vector< std::vector< unsigned char> > mapaR) : Comportamiento(mapaR) {
       // Inicializar Variables de Estado
@@ -30,6 +31,7 @@ class ComportamientoJugador : public Comportamiento {
       destino.columna = -1;
       destino.orientacion = -1;
       ultimaAccion = actIDLE;
+      hayPlan=false; // Mirar abajo
     }
     ComportamientoJugador(const ComportamientoJugador & comport) : Comportamiento(comport){}
     ~ComportamientoJugador(){}
@@ -46,6 +48,7 @@ class ComportamientoJugador : public Comportamiento {
     estado actual, destino;
     Action ultimaAccion;
     list<Action> plan; // Lista de acciones para llegar al destino
+    bool hayPlan; // ESTA ESTA TMBN EN THINK
 
     // Métodos privados de la clase
     bool pathFinding(int level, const estado &origen, const estado &destino, list<Action> &plan);
