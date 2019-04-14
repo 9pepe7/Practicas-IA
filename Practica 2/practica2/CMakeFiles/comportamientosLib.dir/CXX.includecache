@@ -35,6 +35,8 @@ set
 -
 stack
 -
+queue
+-
 
 /home/acer/Desktop/Practicas-IA/Practica 2/practica2/Comportamientos_Jugador/jugador.hpp
 comportamientos/comportamiento.hpp
