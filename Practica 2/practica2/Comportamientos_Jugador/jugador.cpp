@@ -62,10 +62,7 @@ Action ComportamientoJugador::think(Sensores sensores) {
 		plan.erase(plan.begin());
 	} else{
 		// Sistema reactivo
-		if(sensores.terreno[2]=='P' || sensores.terreno[2]=='M' || sensores.terreno[2]=='D' || sensores.superficie[2]=='a')
-			sigAccion=actTURN_R;
-		else
-			sigAccion = actFORWARD;
+		cout << "No hay plan. Problema.";
 	}
 
 	ultimaAccion=sigAccion;
@@ -84,7 +81,7 @@ bool ComportamientoJugador::pathFinding (int level, const estado &origen, const 
 			      return pathFinding_Anchura(origen,destino,plan);
 						break;
 		case 3: cout << "Busqueda Costo Uniforme\n";
-						// Incluir aqui la llamada al busqueda de costo uniforme
+						pathFinding_CostoUniforme(origen, destino, plan);
 						break;
 		case 4: cout << "Busqueda para el reto\n";
 						// Incluir aqui la llamada al algoritmo de búsqueda usado en el nivel 2
@@ -138,6 +135,10 @@ bool ComportamientoJugador::HayObstaculoDelante(estado &st){
 struct nodo{
 	estado st;
 	list<Action> secuencia;
+	int coste;
+	bool operator < (const nodo &n) const{
+		return (this->coste < n.coste);
+	}
 };
 
 struct ComparaEstados{
@@ -227,22 +228,22 @@ bool ComportamientoJugador::pathFinding_Profundidad(const estado &origen, const 
 
 // Implementación de la búsqueda en anchura.
 // Entran los puntos origen y destino y devuelve la secuencia de acciones en plan, una lista de acciones.
-bool ComportamientoJugador::pathFinding_Anchura(const estado &origen, const estado &destino, list<Action> &plan) {
+bool ComportamientoJugador::pathFinding_Anchura (const estado &origen, const estado &destino, list<Action> &plan) {
 	cout << "Calculando plan de busqueda en anchura\n";
 	plan.clear(); 												// Borro la lista
 	set<estado,ComparaEstados> generados; // Lista de Cerrados
 	queue<nodo> cola;											// Lista de Abiertos
-  nodo actual;
-	actual.st = origen;
-	actual.secuencia.empty();
-	cola.push(actual);
+	nodo padre;
+	padre.st = origen;
+	padre.secuencia.empty();
+	cola.push(padre);
 
-  while ( !cola.empty() && (actual.st.fila!=destino.fila || actual.st.columna!=destino.columna) ){
+  while ( !cola.empty() && (padre.st.fila!=destino.fila || padre.st.columna!=destino.columna) ){
 		cola.pop();
-		generados.insert(actual.st);
+		generados.insert(padre.st);
 
 		// Generar descendiente de girar a la derecha
-		nodo hijoTurnR = actual;
+		nodo hijoTurnR = padre;
 		hijoTurnR.st.orientacion = (hijoTurnR.st.orientacion+1)%4;
 		if (generados.find(hijoTurnR.st) == generados.end()){
 			hijoTurnR.secuencia.push_back(actTURN_R);
@@ -250,7 +251,7 @@ bool ComportamientoJugador::pathFinding_Anchura(const estado &origen, const esta
 		}
 
 		// Generar descendiente de girar a la izquierda
-		nodo hijoTurnL = actual;
+		nodo hijoTurnL = padre;
 		hijoTurnL.st.orientacion = (hijoTurnL.st.orientacion+3)%4;
 		if (generados.find(hijoTurnL.st) == generados.end()){
 			hijoTurnL.secuencia.push_back(actTURN_L);
@@ -258,7 +259,7 @@ bool ComportamientoJugador::pathFinding_Anchura(const estado &origen, const esta
 		}
 
 		// Generar descendiente de avanzar
-		nodo hijoForward = actual;
+		nodo hijoForward = padre;
 		if (!HayObstaculoDelante(hijoForward.st)){ // Comprueba si puede avanzar, y si sí, avanza hijoForward
 			if (generados.find(hijoForward.st) == generados.end()){
 				hijoForward.secuencia.push_back(actFORWARD);
@@ -268,19 +269,103 @@ bool ComportamientoJugador::pathFinding_Anchura(const estado &origen, const esta
 
 		// Tomo el siguiente valor de la pila
 		if (!cola.empty()){
-			actual = cola.front();
+			padre = cola.front();
 		}
 	}
 
   cout << "Terminada la busqueda\n";
 
-	if (actual.st.fila == destino.fila && actual.st.columna == destino.columna){
+	if (padre.st.fila == destino.fila && padre.st.columna == destino.columna){
 		cout << "Cargando el plan\n";
-		plan = actual.secuencia;
+		plan = padre.secuencia;
 		cout << "Longitud del plan: " << plan.size() << endl;
 		PintaPlan(plan);
 		// ver el plan en el mapa
 		VisualizaPlan(origen, plan);
+		cout << "Rumbo a " << padre.st.fila << " " << padre.st.columna << endl;
+		return true;
+	}
+	else {
+		cout << "No encontrado plan\n";
+	}
+
+
+	return false;
+}
+
+
+//---------------------- Implementación de la busqueda en costo uniforme ---------------------------
+
+struct ComparaNodos{
+	bool operator() (const nodo &n1, const nodo &n2) const{
+		return n2 < n1;
+	}
+};
+
+bool ComportamientoJugador::pathFinding_CostoUniforme(const estado &origen, const estado &destino, list<Action> &plan) {
+	cout << "Calculando plan de busqueda de costo uniforme\n";
+	plan.clear(); 														// Borro la lista
+	set<estado,ComparaEstados> generados; 		// Lista de Cerrados
+	priority_queue<nodo, vector<nodo>, ComparaNodos> cola;			// Lista de Abiertos
+  nodo padre;
+	padre.st = origen;
+	padre.secuencia.empty();
+	padre.coste=0;
+	cola.push(padre);
+
+  while ( !cola.empty() && (padre.st.fila!=destino.fila || padre.st.columna!=destino.columna) ){
+		cola.pop();
+		generados.insert(padre.st);
+
+		// Generar descendiente de girar a la derecha
+		nodo hijoTurnR = padre;
+		hijoTurnR.st.orientacion = (hijoTurnR.st.orientacion+1)%4;
+		if (generados.find(hijoTurnR.st) == generados.end()){ // Si el hijo no está en cerrados
+			hijoTurnR.secuencia.push_back(actTURN_R);
+			hijoTurnR.coste++;
+			cola.push(hijoTurnR);
+		}
+
+		// Generar descendiente de girar a la izquierda
+		nodo hijoTurnL = padre;
+		hijoTurnL.st.orientacion = (hijoTurnL.st.orientacion+3)%4;
+		if (generados.find(hijoTurnL.st) == generados.end()){ // Si el hijo no está en cerrados
+			hijoTurnL.secuencia.push_back(actTURN_L);
+			hijoTurnL.coste++;
+			cola.push(hijoTurnL);
+		}
+
+		// Generar descendiente de avanzar
+		nodo hijoForward = padre;
+		if (!HayObstaculoDelante(hijoForward.st)){ // Comprueba si puede avanzar, y si sí, avanza hijoForward
+			if (generados.find(hijoForward.st) == generados.end()){ // Si no esta en cerrados
+				hijoForward.secuencia.push_back(actFORWARD);
+				switch(mapaResultado[hijoForward.st.fila][hijoForward.st.columna]){ // Aumentamos el coste
+					case 'T': hijoForward.coste+=2; break;
+					case 'B': hijoForward.coste+=5; break;
+					case 'A': hijoForward.coste+=10; break;
+					default: hijoForward.coste++; break;
+				}
+				cola.push(hijoForward);
+			}
+		}
+
+		// Tomo el siguiente valor de la pila
+		if (!cola.empty()){
+			padre = cola.top();
+		}
+	}
+
+  cout << "Terminada la busqueda\n";
+
+	if (padre.st.fila == destino.fila && padre.st.columna == destino.columna){
+		cout << "Cargando el plan\n";
+		plan = padre.secuencia;
+		cout << "Longitud del plan: " << plan.size() << endl;
+		PintaPlan(plan);
+		// ver el plan en el mapa
+		VisualizaPlan(origen, plan);
+		cout << "Rumbo a " << padre.st.fila << " " << padre.st.columna << endl;
 		return true;
 	}
 	else {
