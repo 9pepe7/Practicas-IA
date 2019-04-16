@@ -9,6 +9,9 @@ struct estado {
   int fila;
   int columna;
   int orientacion;
+  bool operator == (const estado &e) const {
+    return ( this->fila==e.fila && this->columna==e.columna && this->orientacion==e.orientacion );
+  }
 };
 
 class ComportamientoJugador : public Comportamiento {
@@ -55,7 +58,6 @@ class ComportamientoJugador : public Comportamiento {
     bool pathFinding_Profundidad(const estado &origen, const estado &destino, list<Action> &plan);
     bool pathFinding_Anchura(const estado &origen, const estado &destino, list<Action> &plan);
     bool pathFinding_CostoUniforme(const estado &origen, const estado &destino, list<Action> &plan);
-
 
     void PintaPlan(list<Action> plan);
     bool HayObstaculoDelante(estado &st);
