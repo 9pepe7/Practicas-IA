@@ -7,7 +7,7 @@
 #include <stack>
 #include <queue>
 #include <vector>
-#include <algorithm>
+#include <algorithm> // sort
 
 // Este es el método principal que debe contener los 4 Comportamientos_Jugador
 // que se piden en la práctica. Tiene como entrada la información de los
@@ -43,7 +43,7 @@ Action ComportamientoJugador::think(Sensores sensores) {
 			}
 			break;
 	}
-	cout << "Fila: " << fil << " Col: " << col << " Or: " << brujula << endl;
+	//cout << "Fila: " << fil << " Col: " << col << " Or: " << brujula << endl;
 
 	//Ha cambiado el destino?
 	if(sensores.destinoF != destino.fila || sensores.destinoC != destino.columna){
@@ -297,11 +297,13 @@ bool ComportamientoJugador::pathFinding_Anchura (const estado &origen,const esta
 
 void aniade_modifica(vector<nodo> &v, const nodo &n){
 	bool salir=false;
-	for(int i=0; i<v.size() && !salir; ++i){
+	for(int i=0; i<v.size() && !salir; ++i){ // Buscamos si el estado nuevo se encuentra en abiertos
 		if( v[i].st==n.st ){
-			salir=true;
-			if( v[i].coste > n.coste )
+			salir=true; // Si encontramos el estado, acaba la iteración
+			if( v[i].coste > n.coste){ // Si el coste del nodo nuevo es menor, se sustituye
 				v[i].coste=n.coste;
+				v[i].secuencia=n.secuencia;
+			}
 		}
 	}
 	if(!salir)
