@@ -7,6 +7,7 @@
 #include <stack>
 #include <queue>
 #include <vector>
+#include <algorithm>
 
 // Este es el método principal que debe contener los 4 Comportamientos_Jugador
 // que se piden en la práctica. Tiene como entrada la información de los
@@ -61,9 +62,6 @@ Action ComportamientoJugador::think(Sensores sensores) {
 	if(hayPlan && plan.size()>0){
 		sigAccion=plan.front();
 		plan.erase(plan.begin());
-	} else{
-		// Sistema reactivo
-		cout << "No hay plan. Problema.";
 	}
 
 	ultimaAccion=sigAccion;
@@ -82,7 +80,7 @@ bool ComportamientoJugador::pathFinding (int level, const estado &origen, const 
 			      return pathFinding_Anchura(origen,destino,plan);
 						break;
 		case 3: cout << "Busqueda Costo Uniforme\n";
-						pathFinding_CostoUniforme(origen, destino, plan);
+						return pathFinding_CostoUniforme(origen, destino, plan);
 						break;
 		case 4: cout << "Busqueda para el reto\n";
 						// Incluir aqui la llamada al algoritmo de búsqueda usado en el nivel 2
@@ -297,61 +295,88 @@ bool ComportamientoJugador::pathFinding_Anchura (const estado &origen,const esta
 
 //---------------------- Implementación de la busqueda en costo uniforme ---------------------------
 
-struct ComparaNodos{
-	bool operator() (const nodo &n1, const nodo &n2) const{
-		return n2 < n1;
-	}
-};
-
-void aniade_modifica (priority_queue<nodo> &abiertos, const nodo &hijo){
-	queue<nodo> aux;
-	nodo n;
-	bool encontrado=false;
-	while( !abiertos.empty() && !encontrado ){ 	// Recorre abiertos
-		n=abiertos.top();
-		abiertos.pop();
-		if( n.st == hijo.st ){
-			encontrado=true;
-			if(n.coste>hijo.coste){
-				n.coste=hijo.coste;
-			}
+void aniade_modifica(vector<nodo> &v, const nodo &n){
+	bool salir=false;
+	for(int i=0; i<v.size() && !salir; ++i){
+		if( v[i].st==n.st ){
+			salir=true;
+			if( v[i].coste > n.coste )
+				v[i].coste=n.coste;
 		}
-		aux.push(n);
 	}
-	while(!aux.empty()){ // Devuelve los elementos a abiertos
-		n=aux.front();
-		aux.pop();
-		abiertos.push(n);
-	}
+	if(!salir)
+		v.push_back(n);
 }
 
 bool ComportamientoJugador::pathFinding_CostoUniforme(const estado &origen, const estado &destino, list<Action> &plan){
 	cout << "Calculando plan de busqueda de costo uniforme" << endl;
-	plan.clear(); 																// Limpio la lista
-	set<estado,ComparaEstados> cerrados; 					// set de Cerrados
-	priority_queue<nodo> abiertos;								// cola de Abiertos
+	plan.clear(); 														// Limpio la lista
+	set<estado,ComparaEstados> cerrados;			// set de Cerrados
+	vector<nodo> abiertos;										// cola de Abiertos
 	nodo padre;
 	padre.st = origen;
 	padre.secuencia.empty();
-	padre.coste=mapaResultado[origen.fila][origen.columna];
+	switch(mapaResultado[origen.fila][origen.columna]){
+		case 'T': padre.coste=2; break;
+		case 'B': padre.coste=5; break;
+		case 'A': padre.coste=10; break;
+		default:  padre.coste=1; break;
+	}
 	cout << "Nodo raiz: x=" << padre.st.fila << " y=" << padre.st.columna
 	<< " or=" << padre.st.orientacion << " coste=" << padre.coste << endl;
-	abiertos.push(padre);
-
-	while (!abiertos.empty() && (padre.st.fila!=destino.fila||padre.st.columna!=destino.columna) ){
-		abiertos.pop();
+	abiertos.push_back(padre);
+	int m=0;
+	while (!abiertos.empty() && ( (padre.st.fila!=destino.fila)||(padre.st.columna!=destino.columna) ) ){
+		m++;
+		abiertos.erase(abiertos.begin());
 		cerrados.insert(padre.st);
 
-		nodo hijo=padre;
-		hijo.st.orientacion=(hijo.st.orientacion +1)%4; // Hijo girar derecha
-		if(cerrados.find(hijo.st)!=cerrados.end()){
-			hijo.secuencia.push_back(actTURN_R);
-			hijo.coste++;
-			aniade_modifica(abiertos,hijo); // Si no esta, lo añade, si sí, lo modifica
+		nodo hijoR=padre;
+		hijoR.st.orientacion=(hijoR.st.orientacion +1)%4; // Hijo girar derecha
+		if( cerrados.find(hijoR.st) == cerrados.end() ){
+			hijoR.secuencia.push_back(actTURN_R);
+			hijoR.coste++;
+			aniade_modifica(abiertos,hijoR);
 		}
-
-	padre=abiertos.top();
+		nodo hijoL=padre;
+		hijoL.st.orientacion=(hijoL.st.orientacion+3)%4; // Hijo girar izquierda
+		if( cerrados.find(hijoL.st) == cerrados.end() ){
+			hijoL.secuencia.push_back(actTURN_L);
+			hijoL.coste++;
+			aniade_modifica(abiertos,hijoL);
+		}
+		nodo hijoF=padre; // Generar descendiente de avanzar
+		if ( !HayObstaculoDelante(hijoF.st) ){ // Comprueba si puede avanzar, y si sí, avanza hijoForward
+			if ( cerrados.find(hijoF.st) == cerrados.end() ){
+				hijoF.secuencia.push_back(actFORWARD);
+				switch(mapaResultado[hijoF.st.fila][hijoF.st.columna]){
+					case 'T': hijoF.coste+=2; break;
+					case 'B': hijoF.coste+=5; break;
+					case 'A': hijoF.coste+=10; break;
+					default: hijoF.coste++; break;
+				}
+				aniade_modifica(abiertos, hijoF);
+			}
+		}
+		sort(abiertos.begin(),abiertos.end());
+		padre = *(abiertos.begin());
 	}
+	cout << "Ciclos -> " << m << endl;
+	cout << "Terminada la busqueda\n";
+
+	if (padre.st.fila==destino.fila && padre.st.columna==destino.columna){
+		cout << "Cargando el plan\n";
+		plan = padre.secuencia;
+		cout << "Longitud del plan: " << plan.size() << endl;
+		cout << "Coste del camino: " << padre.coste << endl;
+		PintaPlan(plan);				// ver el plan en el mapa
+		VisualizaPlan(origen, plan);
+		cout << "Rumbo a " << padre.st.fila << " " << padre.st.columna << endl;
+		return true;
+	} else {
+		cout << "No encontrado plan\n";
+	}
+	return false;
 }
 
 // Sacar por la términal la secuencia del plan obtenido
