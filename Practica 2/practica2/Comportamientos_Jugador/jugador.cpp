@@ -177,7 +177,6 @@ bool ComportamientoJugador::pathFinding_Profundidad(const estado &origen, const 
 		if (generados.find(hijoTurnR.st) == generados.end()){
 			hijoTurnR.secuencia.push_back(actTURN_R);
 			pila.push(hijoTurnR);
-
 		}
 
 		// Generar descendiente de girar a la izquierda
@@ -328,9 +327,9 @@ bool ComportamientoJugador::pathFinding_CostoUniforme(const estado &origen, cons
 	cout << "Nodo raiz: x=" << padre.st.fila << " y=" << padre.st.columna
 	<< " or=" << padre.st.orientacion << " coste=" << padre.coste << endl;
 	abiertos.push_back(padre);
-	int ciclos=0;
+	//int ciclos=0;
 	while (!abiertos.empty() && ( (padre.st.fila!=destino.fila)||(padre.st.columna!=destino.columna) ) ){
-		ciclos++;
+		//ciclos++;
 		abiertos.erase(abiertos.begin());
 		cerrados.insert(padre.st);
 
@@ -366,7 +365,7 @@ bool ComportamientoJugador::pathFinding_CostoUniforme(const estado &origen, cons
 	}
 
 	cout << "Terminada la busqueda\n";
-	cout << "Ciclos -> " << ciclos << endl;
+	//cout << "Ciclos -> " << ciclos << endl;
 
 	if (padre.st.fila==destino.fila && padre.st.columna==destino.columna){
 		cout << "Cargando el plan\n";
