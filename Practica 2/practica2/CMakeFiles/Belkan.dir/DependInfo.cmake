@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/acer/Desktop/Practicas-IA/Practica 2/practica2/bin_src/juego.cc" "/home/acer/Desktop/Practicas-IA/Practica 2/practica2/CMakeFiles/Belkan.dir/bin_src/juego.cc.o"
+  "/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/bin_src/juego.cc" "/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/CMakeFiles/Belkan.dir/bin_src/juego.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -15,11 +15,11 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/acer/Desktop/Practicas-IA/Practica 2/practica2/CMakeFiles/obj3DLib.dir/DependInfo.cmake"
-  "/home/acer/Desktop/Practicas-IA/Practica 2/practica2/CMakeFiles/motorLib.dir/DependInfo.cmake"
-  "/home/acer/Desktop/Practicas-IA/Practica 2/practica2/CMakeFiles/modelosBelkanLib.dir/DependInfo.cmake"
-  "/home/acer/Desktop/Practicas-IA/Practica 2/practica2/CMakeFiles/GLUILib.dir/DependInfo.cmake"
-  "/home/acer/Desktop/Practicas-IA/Practica 2/practica2/CMakeFiles/comportamientosLib.dir/DependInfo.cmake"
+  "/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/CMakeFiles/obj3DLib.dir/DependInfo.cmake"
+  "/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/CMakeFiles/motorLib.dir/DependInfo.cmake"
+  "/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/CMakeFiles/modelosBelkanLib.dir/DependInfo.cmake"
+  "/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/CMakeFiles/GLUILib.dir/DependInfo.cmake"
+  "/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/CMakeFiles/comportamientosLib.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

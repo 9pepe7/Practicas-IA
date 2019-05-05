@@ -6,37 +6,37 @@
 
 #IncludeRegexTransform: 
 
-/home/acer/Desktop/Practicas-IA/Practica 2/practica2/src/motorlib/entidad.cpp
+/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/src/motorlib/entidad.cpp
 motorlib/entidad.hpp
-/home/acer/Desktop/Practicas-IA/Practica 2/practica2/src/motorlib/motorlib/entidad.hpp
+/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/src/motorlib/motorlib/entidad.hpp
 
-/home/acer/Desktop/Practicas-IA/Practica 2/practica2/src/motorlib/mapa.cpp
+/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/src/motorlib/mapa.cpp
 motorlib/mapa.hpp
-/home/acer/Desktop/Practicas-IA/Practica 2/practica2/src/motorlib/motorlib/mapa.hpp
+/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/src/motorlib/motorlib/mapa.hpp
 
-/home/acer/Desktop/Practicas-IA/Practica 2/practica2/src/motorlib/monitor.cpp
+/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/src/motorlib/monitor.cpp
 motorlib/monitor.hpp
-/home/acer/Desktop/Practicas-IA/Practica 2/practica2/src/motorlib/motorlib/monitor.hpp
+/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/src/motorlib/motorlib/monitor.hpp
 fstream
 -
 
-/home/acer/Desktop/Practicas-IA/Practica 2/practica2/src/motorlib/motor_grafico.cpp
+/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/src/motorlib/motor_grafico.cpp
 motorlib.hpp
-/home/acer/Desktop/Practicas-IA/Practica 2/practica2/src/motorlib/motorlib.hpp
+/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/src/motorlib/motorlib.hpp
 glui/glui.h
 -
 dirent.h
 -
 
-/home/acer/Desktop/Practicas-IA/Practica 2/practica2/src/motorlib/motor_juego.cpp
+/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/src/motorlib/motor_juego.cpp
 motorlib.hpp
-/home/acer/Desktop/Practicas-IA/Practica 2/practica2/src/motorlib/motorlib.hpp
+/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/src/motorlib/motorlib.hpp
 unistd.h
 -
 
-/home/acer/Desktop/Practicas-IA/Practica 2/practica2/src/motorlib/util.cpp
+/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/src/motorlib/util.cpp
 motorlib/util.h
-/home/acer/Desktop/Practicas-IA/Practica 2/practica2/src/motorlib/motorlib/util.h
+/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/src/motorlib/motorlib/util.h
 
 Comportamientos_Jugador/aldeano.hpp
 chrono

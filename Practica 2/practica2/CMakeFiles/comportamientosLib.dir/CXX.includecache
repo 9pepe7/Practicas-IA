@@ -6,13 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/home/acer/Desktop/Practicas-IA/Practica 2/practica2/Comportamientos_Jugador/aldeano.cpp
+/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/Comportamientos_Jugador/aldeano.cpp
 ../Comportamientos_Jugador/aldeano.hpp
-/home/acer/Desktop/Practicas-IA/Practica 2/practica2/Comportamientos_Jugador/aldeano.hpp
+/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/Comportamientos_Jugador/aldeano.hpp
 motorlib/util.h
-/home/acer/Desktop/Practicas-IA/Practica 2/practica2/Comportamientos_Jugador/motorlib/util.h
+/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/Comportamientos_Jugador/motorlib/util.h
 
-/home/acer/Desktop/Practicas-IA/Practica 2/practica2/Comportamientos_Jugador/aldeano.hpp
+/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/Comportamientos_Jugador/aldeano.hpp
 chrono
 -
 time.h
@@ -20,13 +20,13 @@ time.h
 thread
 -
 comportamientos/comportamiento.hpp
-/home/acer/Desktop/Practicas-IA/Practica 2/practica2/Comportamientos_Jugador/comportamientos/comportamiento.hpp
+/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/Comportamientos_Jugador/comportamientos/comportamiento.hpp
 
-/home/acer/Desktop/Practicas-IA/Practica 2/practica2/Comportamientos_Jugador/jugador.cpp
+/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/Comportamientos_Jugador/jugador.cpp
 ../Comportamientos_Jugador/jugador.hpp
-/home/acer/Desktop/Practicas-IA/Practica 2/practica2/Comportamientos_Jugador/jugador.hpp
+/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/Comportamientos_Jugador/jugador.hpp
 motorlib/util.h
-/home/acer/Desktop/Practicas-IA/Practica 2/practica2/Comportamientos_Jugador/motorlib/util.h
+/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/Comportamientos_Jugador/motorlib/util.h
 iostream
 -
 cmath
@@ -42,15 +42,15 @@ vector
 algorithm
 -
 
-/home/acer/Desktop/Practicas-IA/Practica 2/practica2/Comportamientos_Jugador/jugador.hpp
+/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/Comportamientos_Jugador/jugador.hpp
 comportamientos/comportamiento.hpp
-/home/acer/Desktop/Practicas-IA/Practica 2/practica2/Comportamientos_Jugador/comportamientos/comportamiento.hpp
+/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/Comportamientos_Jugador/comportamientos/comportamiento.hpp
 list
 -
 
-/home/acer/Desktop/Practicas-IA/Practica 2/practica2/src/comportamientos/comportamiento.cpp
+/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/src/comportamientos/comportamiento.cpp
 comportamientos/comportamiento.hpp
-/home/acer/Desktop/Practicas-IA/Practica 2/practica2/src/comportamientos/comportamientos/comportamiento.hpp
+/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/src/comportamientos/comportamientos/comportamiento.hpp
 
 include/comportamientos/comportamiento.hpp
 vector

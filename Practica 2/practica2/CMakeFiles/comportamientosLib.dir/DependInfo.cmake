@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/acer/Desktop/Practicas-IA/Practica 2/practica2/Comportamientos_Jugador/aldeano.cpp" "/home/acer/Desktop/Practicas-IA/Practica 2/practica2/CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/aldeano.cpp.o"
-  "/home/acer/Desktop/Practicas-IA/Practica 2/practica2/Comportamientos_Jugador/jugador.cpp" "/home/acer/Desktop/Practicas-IA/Practica 2/practica2/CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/jugador.cpp.o"
-  "/home/acer/Desktop/Practicas-IA/Practica 2/practica2/src/comportamientos/comportamiento.cpp" "/home/acer/Desktop/Practicas-IA/Practica 2/practica2/CMakeFiles/comportamientosLib.dir/src/comportamientos/comportamiento.cpp.o"
+  "/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/Comportamientos_Jugador/aldeano.cpp" "/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/aldeano.cpp.o"
+  "/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/Comportamientos_Jugador/jugador.cpp" "/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/jugador.cpp.o"
+  "/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/src/comportamientos/comportamiento.cpp" "/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/CMakeFiles/comportamientosLib.dir/src/comportamientos/comportamiento.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

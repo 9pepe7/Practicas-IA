@@ -328,9 +328,9 @@ bool ComportamientoJugador::pathFinding_CostoUniforme(const estado &origen, cons
 	cout << "Nodo raiz: x=" << padre.st.fila << " y=" << padre.st.columna
 	<< " or=" << padre.st.orientacion << " coste=" << padre.coste << endl;
 	abiertos.push_back(padre);
-	int m=0;
+	int ciclos=0;
 	while (!abiertos.empty() && ( (padre.st.fila!=destino.fila)||(padre.st.columna!=destino.columna) ) ){
-		m++;
+		ciclos++;
 		abiertos.erase(abiertos.begin());
 		cerrados.insert(padre.st);
 
@@ -364,8 +364,9 @@ bool ComportamientoJugador::pathFinding_CostoUniforme(const estado &origen, cons
 		sort(abiertos.begin(),abiertos.end());
 		padre = *(abiertos.begin());
 	}
-	cout << "Ciclos -> " << m << endl;
+
 	cout << "Terminada la busqueda\n";
+	cout << "Ciclos -> " << ciclos << endl;
 
 	if (padre.st.fila==destino.fila && padre.st.columna==destino.columna){
 		cout << "Cargando el plan\n";
@@ -374,7 +375,7 @@ bool ComportamientoJugador::pathFinding_CostoUniforme(const estado &origen, cons
 		cout << "Coste del camino: " << padre.coste << endl;
 		PintaPlan(plan);				// ver el plan en el mapa
 		VisualizaPlan(origen, plan);
-		cout << "Rumbo a " << padre.st.fila << " " << padre.st.columna << endl;
+		cout << "Rumbo a x=" << padre.st.fila << " y=" << padre.st.columna << endl;
 		return true;
 	} else {
 		cout << "No encontrado plan\n";

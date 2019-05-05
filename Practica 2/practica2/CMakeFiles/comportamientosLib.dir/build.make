@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/acer/Desktop/Practicas-IA/Practica 2/practica2"
+CMAKE_SOURCE_DIR = "/home/pepe/Desktop/Practicas-IA/Practica 2/practica2"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/acer/Desktop/Practicas-IA/Practica 2/practica2"
+CMAKE_BINARY_DIR = "/home/pepe/Desktop/Practicas-IA/Practica 2/practica2"
 
 # Include any dependencies generated for this target.
 include CMakeFiles/comportamientosLib.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/comportamientosLib.dir/flags.make
 
 CMakeFiles/comportamientosLib.dir/src/comportamientos/comportamiento.cpp.o: CMakeFiles/comportamientosLib.dir/flags.make
 CMakeFiles/comportamientosLib.dir/src/comportamientos/comportamiento.cpp.o: src/comportamientos/comportamiento.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/acer/Desktop/Practicas-IA/Practica 2/practica2/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/comportamientosLib.dir/src/comportamientos/comportamiento.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/comportamientosLib.dir/src/comportamientos/comportamiento.cpp.o -c "/home/acer/Desktop/Practicas-IA/Practica 2/practica2/src/comportamientos/comportamiento.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/comportamientosLib.dir/src/comportamientos/comportamiento.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/comportamientosLib.dir/src/comportamientos/comportamiento.cpp.o -c "/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/src/comportamientos/comportamiento.cpp"
 
 CMakeFiles/comportamientosLib.dir/src/comportamientos/comportamiento.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/comportamientosLib.dir/src/comportamientos/comportamiento.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/acer/Desktop/Practicas-IA/Practica 2/practica2/src/comportamientos/comportamiento.cpp" > CMakeFiles/comportamientosLib.dir/src/comportamientos/comportamiento.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/src/comportamientos/comportamiento.cpp" > CMakeFiles/comportamientosLib.dir/src/comportamientos/comportamiento.cpp.i
 
 CMakeFiles/comportamientosLib.dir/src/comportamientos/comportamiento.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/comportamientosLib.dir/src/comportamientos/comportamiento.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/acer/Desktop/Practicas-IA/Practica 2/practica2/src/comportamientos/comportamiento.cpp" -o CMakeFiles/comportamientosLib.dir/src/comportamientos/comportamiento.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/src/comportamientos/comportamiento.cpp" -o CMakeFiles/comportamientosLib.dir/src/comportamientos/comportamiento.cpp.s
 
 CMakeFiles/comportamientosLib.dir/src/comportamientos/comportamiento.cpp.o.requires:
 
@@ -83,16 +83,16 @@ CMakeFiles/comportamientosLib.dir/src/comportamientos/comportamiento.cpp.o.provi
 
 CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/aldeano.cpp.o: CMakeFiles/comportamientosLib.dir/flags.make
 CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/aldeano.cpp.o: Comportamientos_Jugador/aldeano.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/acer/Desktop/Practicas-IA/Practica 2/practica2/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/aldeano.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/aldeano.cpp.o -c "/home/acer/Desktop/Practicas-IA/Practica 2/practica2/Comportamientos_Jugador/aldeano.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/aldeano.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/aldeano.cpp.o -c "/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/Comportamientos_Jugador/aldeano.cpp"
 
 CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/aldeano.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/aldeano.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/acer/Desktop/Practicas-IA/Practica 2/practica2/Comportamientos_Jugador/aldeano.cpp" > CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/aldeano.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/Comportamientos_Jugador/aldeano.cpp" > CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/aldeano.cpp.i
 
 CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/aldeano.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/aldeano.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/acer/Desktop/Practicas-IA/Practica 2/practica2/Comportamientos_Jugador/aldeano.cpp" -o CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/aldeano.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/Comportamientos_Jugador/aldeano.cpp" -o CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/aldeano.cpp.s
 
 CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/aldeano.cpp.o.requires:
 
@@ -107,16 +107,16 @@ CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/aldeano.cpp.o.provides
 
 CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/jugador.cpp.o: CMakeFiles/comportamientosLib.dir/flags.make
 CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/jugador.cpp.o: Comportamientos_Jugador/jugador.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/acer/Desktop/Practicas-IA/Practica 2/practica2/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/jugador.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/jugador.cpp.o -c "/home/acer/Desktop/Practicas-IA/Practica 2/practica2/Comportamientos_Jugador/jugador.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/jugador.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/jugador.cpp.o -c "/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/Comportamientos_Jugador/jugador.cpp"
 
 CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/jugador.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/jugador.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/acer/Desktop/Practicas-IA/Practica 2/practica2/Comportamientos_Jugador/jugador.cpp" > CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/jugador.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/Comportamientos_Jugador/jugador.cpp" > CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/jugador.cpp.i
 
 CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/jugador.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/jugador.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/acer/Desktop/Practicas-IA/Practica 2/practica2/Comportamientos_Jugador/jugador.cpp" -o CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/jugador.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/Comportamientos_Jugador/jugador.cpp" -o CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/jugador.cpp.s
 
 CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/jugador.cpp.o.requires:
 
@@ -143,7 +143,7 @@ lib/libcomportamientosLib.a: CMakeFiles/comportamientosLib.dir/Comportamientos_J
 lib/libcomportamientosLib.a: CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/jugador.cpp.o
 lib/libcomportamientosLib.a: CMakeFiles/comportamientosLib.dir/build.make
 lib/libcomportamientosLib.a: CMakeFiles/comportamientosLib.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/acer/Desktop/Practicas-IA/Practica 2/practica2/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX static library lib/libcomportamientosLib.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX static library lib/libcomportamientosLib.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/comportamientosLib.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/comportamientosLib.dir/link.txt --verbose=$(VERBOSE)
 
@@ -163,6 +163,6 @@ CMakeFiles/comportamientosLib.dir/clean:
 .PHONY : CMakeFiles/comportamientosLib.dir/clean
 
 CMakeFiles/comportamientosLib.dir/depend:
-	cd "/home/acer/Desktop/Practicas-IA/Practica 2/practica2" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/home/acer/Desktop/Practicas-IA/Practica 2/practica2" "/home/acer/Desktop/Practicas-IA/Practica 2/practica2" "/home/acer/Desktop/Practicas-IA/Practica 2/practica2" "/home/acer/Desktop/Practicas-IA/Practica 2/practica2" "/home/acer/Desktop/Practicas-IA/Practica 2/practica2/CMakeFiles/comportamientosLib.dir/DependInfo.cmake" --color=$(COLOR)
+	cd "/home/pepe/Desktop/Practicas-IA/Practica 2/practica2" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/home/pepe/Desktop/Practicas-IA/Practica 2/practica2" "/home/pepe/Desktop/Practicas-IA/Practica 2/practica2" "/home/pepe/Desktop/Practicas-IA/Practica 2/practica2" "/home/pepe/Desktop/Practicas-IA/Practica 2/practica2" "/home/pepe/Desktop/Practicas-IA/Practica 2/practica2/CMakeFiles/comportamientosLib.dir/DependInfo.cmake" --color=$(COLOR)
 .PHONY : CMakeFiles/comportamientosLib.dir/depend
 
