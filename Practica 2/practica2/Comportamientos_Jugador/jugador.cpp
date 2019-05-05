@@ -295,18 +295,19 @@ bool ComportamientoJugador::pathFinding_Anchura (const estado &origen,const esta
 
 //---------------------- Implementación de la busqueda en costo uniforme ---------------------------
 
+// Añade un nodo al vector si éste no se encuentra ahí. Si está, comprueba su coste para modificarlo si fuera menor
 void aniade_modifica(vector<nodo> &v, const nodo &n){
 	bool salir=false;
-	for(int i=0; i<v.size() && !salir; ++i){ // Buscamos si el estado nuevo se encuentra en abiertos
+	for(int i=0; i<v.size() && !salir; ++i){ // Buscamos si el estado del nodo nuevo se encuentra en abiertos
 		if( v[i].st==n.st ){
 			salir=true; // Si encontramos el estado, acaba la iteración
-			if( v[i].coste > n.coste){ // Si el coste del nodo nuevo es menor, se sustituye
+			if( v[i].coste > n.coste){ // Si el coste del nodo nuevo es menor, se modifica el nodo existente
 				v[i].coste=n.coste;
 				v[i].secuencia=n.secuencia;
 			}
 		}
 	}
-	if(!salir)
+	if(!salir) // Si no lo encontró, lo añade
 		v.push_back(n);
 }
 
