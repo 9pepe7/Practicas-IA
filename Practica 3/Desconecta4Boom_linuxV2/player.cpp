@@ -52,13 +52,63 @@ double ValoracionTest(const Environment &estado, int jugador){
 }
 
 // ------------------- Los tres metodos anteriores no se pueden modificar
-
+// Funciones auxiliares para calcular la heuristica
+// Lo basaremos en cuantas fichas del jugador hay seguidas en el tablero
+// En horizontal:
 int Hor(const Environment &estado, int jug){
-return 0;
+  int puntos=0, juntas=0;
+  const int rival=(jug==1)?2:1;
+  for(int i=0;i<7;++i){ // Recorremos
+    for(int j=0; j<7; ++j){ // Me gustaría usar switches, pero no me deja
+      if(estado.See_Casilla(i,j)==jug){ // Si el jugador tiene una ficha en esa casilla
+        ++juntas;
+        switch(juntas){
+          case 2: puntos+=4; break;
+          case 3: puntos+=12; break;
+          default: ++puntos; //1
+        }
+      } else if(estado.See_Casilla(i,j)==rival){ // si despues de varias seguidad, tiene el rival, no sirve esa racha, y se resta lo sumado
+        switch(juntas){
+          case 2: puntos-=4; break;
+          case 3: puntos-=12; break;
+          default: --puntos; //1
+        }
+        juntas=0; // Se resetea juntas
+      } else
+        juntas=0; // Si esta vacio
+    }
+    juntas=0;
+  }
+  return puntos;
 }
+// Para la transicion vertical, el algoritmo es el mismo que para la horizontal, cambiando i por j en seecasilla
 int Ver(const Environment &estado, int jug){
-return 0;
+  int puntos=0, juntas=0;
+  const int rival=(jug==1)?2:1;
+  for(int i=0;i<7;++i){ // Recorremos
+    for(int j=0; j<7; ++j){ // Me gustaría usar switches, pero no me deja
+      if(estado.See_Casilla(i,j)==jug){ // Si el jugador tiene una ficha en esa casilla
+        ++juntas;
+        switch(juntas){
+          case 2: puntos+=4; break;
+          case 3: puntos+=12; break;
+          default: ++puntos; //1
+        }
+      } else if(estado.See_Casilla(i,j)==rival){ // si despues de varias seguidad, tiene el rival, no sirve esa racha, y se resta lo sumado
+        switch(juntas){
+          case 2: puntos-=4; break;
+          case 3: puntos-=12; break;
+          default: --puntos; //1
+        }
+        juntas=0; // Se resetea juntas
+      } else
+        juntas=0; // Si esta vacio
+    }
+    juntas=0;
+  }
+  return puntos;
 }
+// La diagonal es similar, pero se hace en dos partes
 int Dia(const Environment &estado, int jug){
 return 0;
 }
