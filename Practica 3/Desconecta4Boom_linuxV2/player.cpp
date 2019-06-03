@@ -55,7 +55,7 @@ double ValoracionTest(const Environment &estado, int jugador){
 // Funciones auxiliares para calcular la heuristica
 // Lo basaremos en cuantas fichas del jugador hay seguidas en el tablero
 // En horizontal:
-int Hor(const Environment &estado, int jug){
+int Hor(const Environment &estado, const int &jug){
   int puntos=0, juntas=0, rival, bomb, riv_bomb;
   if(jug==1){ // Damos valores en funcion de See_Casilla
     rival=2;
@@ -73,13 +73,13 @@ int Hor(const Environment &estado, int jug){
         switch(juntas){
           case 2: puntos+=4; break;
           case 3: puntos+=12; break;
-          default: ++puntos; //1
+          default: puntos+=juntas; // 1 solitaria
         }
       } else if(estado.See_Casilla(i,j)==rival || estado.See_Casilla(i,j)==riv_bomb){ // si despues de varias seguidas, tiene el rival, no sirve esa racha, y se resta lo sumado
         switch(juntas){
           case 2: puntos-=4; break;
           case 3: puntos-=12; break;
-          default: --puntos; //1
+          default: puntos-=juntas; // 1 o 0 (e.g. dos seguidas del rival)
         }
         juntas=0; // Se resetea juntas
       } else
@@ -90,7 +90,7 @@ int Hor(const Environment &estado, int jug){
   return puntos;
 }
 // Para la transicion vertical, el algoritmo es el mismo que para la horizontal, cambiando i por j en seecasilla
-int Ver(const Environment &estado, int jug){
+int Ver(const Environment &estado, const int &jug){
   int puntos=0, juntas=0, rival, bomb, riv_bomb;
   if(jug==1){ // Damos valores en funcion de See_Casilla
     rival=2;
@@ -103,18 +103,18 @@ int Ver(const Environment &estado, int jug){
   }
   for(int i=0;i<7;++i){ // Recorremos
     for(int j=0; j<7; ++j){ // Me gustaría usar switches, pero no me deja
-      if(estado.See_Casilla(i,j)==jug || estado.See_Casilla(i,j)==bomb){ // Si el jugador tiene una ficha en esa casilla
+      if(estado.See_Casilla(j,i)==jug || estado.See_Casilla(j,i)==bomb){ // Si el jugador tiene una ficha en esa casilla
         ++juntas;
         switch(juntas){
           case 2: puntos+=4; break;
           case 3: puntos+=12; break;
-          default: ++puntos; //1
+          default: puntos+=juntas; // 1 solitaria
         }
-      } else if(estado.See_Casilla(i,j)==rival || estado.See_Casilla(i,j)==riv_bomb){ // si despues de varias seguidas, tiene el rival, no sirve esa racha, y se resta lo sumado
+      } else if(estado.See_Casilla(j,i)==rival || estado.See_Casilla(j,i)==riv_bomb){ // si despues de varias seguidas, tiene el rival, no sirve esa racha, y se resta lo sumado
         switch(juntas){
           case 2: puntos-=4; break;
           case 3: puntos-=12; break;
-          default: --puntos; //1
+          default: puntos-=juntas; // 1 o 0 (e.g. dos seguidas del rival)
         }
         juntas=0; // Se resetea juntas
       } else
@@ -125,7 +125,7 @@ int Ver(const Environment &estado, int jug){
   return puntos;
 }
 // La diagonal es similar, pero se hace en dos partes
-int Dia(const Environment &estado, int jug){
+int Dia(const Environment &estado, const int &jug){
   int puntos=0, juntas=0, rival, bomb, riv_bomb;
   if(jug==1){ // Damos valores en funcion de See_Casilla
     rival=2;
@@ -144,13 +144,13 @@ int Dia(const Environment &estado, int jug){
           switch(juntas){
             case 2: puntos+=4; break;
             case 3: puntos+=12; break;
-            default: ++puntos; //1
+            default: puntos+=juntas; // 1 solitaria
           }
         } else if(estado.See_Casilla(i+k,j-k)==rival || estado.See_Casilla(i+k,j-k)==riv_bomb){ // si despues de varias seguidas, tiene el rival, no sirve esa racha, y se resta lo sumado
           switch(juntas){
             case 2: puntos-=4; break;
             case 3: puntos-=12; break;
-            default: --puntos; //1
+            default: puntos-=juntas; // 1 o 0 (e.g. dos seguidas del rival)
           }
           juntas=0; // Se resetea juntas
         } else
@@ -167,13 +167,13 @@ int Dia(const Environment &estado, int jug){
           switch(juntas){
             case 2: puntos+=4; break;
             case 3: puntos+=12; break;
-            default: ++puntos; //1
+            default: puntos+=juntas; // 1 solitaria
           }
         } else if(estado.See_Casilla(i+k,j+k)==rival || estado.See_Casilla(i+k,j+k)==riv_bomb){ // si despues de varias seguidas, tiene el rival, no sirve esa racha, y se resta lo sumado
           switch(juntas){
             case 2: puntos-=4; break;
             case 3: puntos-=12; break;
-            default: --puntos; //1
+            default: puntos-=juntas; // 1 o 0 (e.g. dos seguidas del rival)
           }
           juntas=0; // Se resetea juntas
         } else
@@ -203,7 +203,7 @@ double Valoracion(const Environment &estado, int jugador){
     rival_hor  = Hor(estado, rival), rival_ver = Ver(estado, rival), rival_dia = Dia(estado, rival);
     return ((rival_hor+rival_ver+rival_dia)-(yo_hor+yo_ver+yo_dia));
   } // Como las funciones suman en positivo las fichas seguidas, y nosotros buscamos que el rival las tenga,
-}   // la heuristica hace rival-yo, para favorecer aquellos estado en los que el rival enlace fichas
+}   // la heuristica hace rival-yo, para favorecer aquellos estados en los que el rival enlace fichas
 
 
 
@@ -223,7 +223,7 @@ void JuegoAleatorio(bool aplicables[], int opciones[], int &j){
 }
 
 
-double Poda_AlfaBeta(const Environment &estado, int jug, bool min_max, int prof, Environment::ActionType &accion, double alpha, double beta){
+double Poda_AlfaBeta(const Environment &estado, const int &jug, const bool &min_max, const int &prof, Environment::ActionType &accion, double alpha, double beta){
   if(prof==0 || estado.JuegoTerminado()) // Si termina el juego o la profundidad maxima se ha alcanzado (va bajando)
     return Valoracion(estado, jug);
 
