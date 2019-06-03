@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <cstdlib>
 #include <vector>
@@ -67,7 +68,7 @@ int Hor(const Environment &estado, const int &jug){
     riv_bomb=4;
   }
   for(int i=0;i<7;++i){ // Recorremos
-    for(int j=0; j<7; ++j){ // Me gustaría usar switches, pero no me deja
+    for(int j=0; j<7; ++j){
       if(estado.See_Casilla(i,j)==jug || estado.See_Casilla(i,j)==bomb){ // Si el jugador tiene una ficha en esa casilla
         ++juntas;
         switch(juntas){
@@ -102,7 +103,7 @@ int Ver(const Environment &estado, const int &jug){
     riv_bomb=4;
   }
   for(int i=0;i<7;++i){ // Recorremos
-    for(int j=0; j<7; ++j){ // Me gustaría usar switches, pero no me deja
+    for(int j=0; j<7; ++j){ 
       if(estado.See_Casilla(j,i)==jug || estado.See_Casilla(j,i)==bomb){ // Si el jugador tiene una ficha en esa casilla
         ++juntas;
         switch(juntas){
@@ -197,7 +198,7 @@ double Valoracion(const Environment &estado, int jugador){
     return -99999999.0; // Pierde el jugador que pide la valoracion
   else if (estado.Get_Casillas_Libres()==0)
     return 0;  // Hay un empate global y se ha rellenado completamente el tablero
-  else { // Aplicamos la heuristica
+  else { // Aplicamos la heuristica (podría hacerse en una funcion aparte)
     int rival = (jugador==1)?2:1;
     int yo_hor = Hor(estado, jugador),  yo_ver = Ver(estado, jugador),  yo_dia = Dia(estado, jugador),
     rival_hor  = Hor(estado, rival), rival_ver = Ver(estado, rival), rival_dia = Dia(estado, rival);
