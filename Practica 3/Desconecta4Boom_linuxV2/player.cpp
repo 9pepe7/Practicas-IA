@@ -56,18 +56,26 @@ double ValoracionTest(const Environment &estado, int jugador){
 // Lo basaremos en cuantas fichas del jugador hay seguidas en el tablero
 // En horizontal:
 int Hor(const Environment &estado, int jug){
-  int puntos=0, juntas=0;
-  const int rival=(jug==1)?2:1;
+  int puntos=0, juntas=0, rival, bomb, riv_bomb;
+  if(jug==1){ // Damos valores en funcion de See_Casilla
+    rival=2;
+    bomb=4;
+    riv_bomb=5;
+  } else{ // if jug==2
+    rival=1;
+    bomb=5;
+    riv_bomb=4;
+  }
   for(int i=0;i<7;++i){ // Recorremos
     for(int j=0; j<7; ++j){ // Me gustaría usar switches, pero no me deja
-      if(estado.See_Casilla(i,j)==jug){ // Si el jugador tiene una ficha en esa casilla
+      if(estado.See_Casilla(i,j)==jug || estado.See_Casilla(i,j)==bomb){ // Si el jugador tiene una ficha en esa casilla
         ++juntas;
         switch(juntas){
           case 2: puntos+=4; break;
           case 3: puntos+=12; break;
           default: ++puntos; //1
         }
-      } else if(estado.See_Casilla(i,j)==rival){ // si despues de varias seguidad, tiene el rival, no sirve esa racha, y se resta lo sumado
+      } else if(estado.See_Casilla(i,j)==rival || estado.See_Casilla(i,j)==riv_bomb){ // si despues de varias seguidad, tiene el rival, no sirve esa racha, y se resta lo sumado
         switch(juntas){
           case 2: puntos-=4; break;
           case 3: puntos-=12; break;
@@ -83,18 +91,26 @@ int Hor(const Environment &estado, int jug){
 }
 // Para la transicion vertical, el algoritmo es el mismo que para la horizontal, cambiando i por j en seecasilla
 int Ver(const Environment &estado, int jug){
-  int puntos=0, juntas=0;
-  const int rival=(jug==1)?2:1;
+  int puntos=0, juntas=0, rival, bomb, riv_bomb;
+  if(jug==1){ // Damos valores en funcion de See_Casilla
+    rival=2;
+    bomb=4;
+    riv_bomb=5;
+  } else{ // if jug==2
+    rival=1;
+    bomb=5;
+    riv_bomb=4;
+  }
   for(int i=0;i<7;++i){ // Recorremos
     for(int j=0; j<7; ++j){ // Me gustaría usar switches, pero no me deja
-      if(estado.See_Casilla(i,j)==jug){ // Si el jugador tiene una ficha en esa casilla
+      if(estado.See_Casilla(i,j)==jug || estado.See_Casilla(i,j)==bomb){ // Si el jugador tiene una ficha en esa casilla
         ++juntas;
         switch(juntas){
           case 2: puntos+=4; break;
           case 3: puntos+=12; break;
           default: ++puntos; //1
         }
-      } else if(estado.See_Casilla(i,j)==rival){ // si despues de varias seguidad, tiene el rival, no sirve esa racha, y se resta lo sumado
+      } else if(estado.See_Casilla(i,j)==rival || estado.See_Casilla(i,j)==riv_bomb){ // si despues de varias seguidad, tiene el rival, no sirve esa racha, y se resta lo sumado
         switch(juntas){
           case 2: puntos-=4; break;
           case 3: puntos-=12; break;
@@ -110,7 +126,63 @@ int Ver(const Environment &estado, int jug){
 }
 // La diagonal es similar, pero se hace en dos partes
 int Dia(const Environment &estado, int jug){
-return 0;
+  int puntos=0, juntas=0, rival, bomb, riv_bomb;
+  if(jug==1){ // Damos valores en funcion de See_Casilla
+    rival=2;
+    bomb=4;
+    riv_bomb=5;
+  } else{ // if jug==2
+    rival=1;
+    bomb=5;
+    riv_bomb=4;
+  }
+  for(int i=0; i<4; ++i){
+    for(int j=3; j<7; ++j){
+      for(int k=0; k<4; ++k){
+        if(estado.See_Casilla(i+k,j-k)==jug || estado.See_Casilla(i+k,j-k)==bomb){ // Si el jugador tiene una ficha en esa casilla
+          ++juntas;
+          switch(juntas){
+            case 2: puntos+=4; break;
+            case 3: puntos+=12; break;
+            default: ++puntos; //1
+          }
+        } else if(estado.See_Casilla(i+k,j-k)==rival || estado.See_Casilla(i+k,j-k)==riv_bomb){ // si despues de varias seguidad, tiene el rival, no sirve esa racha, y se resta lo sumado
+          switch(juntas){
+            case 2: puntos-=4; break;
+            case 3: puntos-=12; break;
+            default: --puntos; //1
+          }
+          juntas=0; // Se resetea juntas
+        } else
+          juntas=0; // Si esta vacio
+      }
+      juntas=0;
+    }
+  }
+  for(int i=0; i<4; ++i){
+    for(int j=0; j<4; ++j){
+      for(int k=0; k<4; ++k){
+        if(estado.See_Casilla(i+k,j+k)==jug || estado.See_Casilla(i+k,j+k)==bomb){ // Si el jugador tiene una ficha en esa casilla
+          ++juntas;
+          switch(juntas){
+            case 2: puntos+=4; break;
+            case 3: puntos+=12; break;
+            default: ++puntos; //1
+          }
+        } else if(estado.See_Casilla(i+k,j+k)==rival || estado.See_Casilla(i+k,j+k)==riv_bomb){ // si despues de varias seguidad, tiene el rival, no sirve esa racha, y se resta lo sumado
+          switch(juntas){
+            case 2: puntos-=4; break;
+            case 3: puntos-=12; break;
+            default: --puntos; //1
+          }
+          juntas=0; // Se resetea juntas
+        } else
+          juntas=0; // Si esta vacio
+      }
+      juntas=0;
+    }
+  }
+  return puntos;
 }
 
 // Funcion heuristica (ESTA ES LA QUE TENEIS QUE MODIFICAR)
