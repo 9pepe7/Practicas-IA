@@ -75,7 +75,7 @@ int Hor(const Environment &estado, int jug){
           case 3: puntos+=12; break;
           default: ++puntos; //1
         }
-      } else if(estado.See_Casilla(i,j)==rival || estado.See_Casilla(i,j)==riv_bomb){ // si despues de varias seguidad, tiene el rival, no sirve esa racha, y se resta lo sumado
+      } else if(estado.See_Casilla(i,j)==rival || estado.See_Casilla(i,j)==riv_bomb){ // si despues de varias seguidas, tiene el rival, no sirve esa racha, y se resta lo sumado
         switch(juntas){
           case 2: puntos-=4; break;
           case 3: puntos-=12; break;
@@ -110,7 +110,7 @@ int Ver(const Environment &estado, int jug){
           case 3: puntos+=12; break;
           default: ++puntos; //1
         }
-      } else if(estado.See_Casilla(i,j)==rival || estado.See_Casilla(i,j)==riv_bomb){ // si despues de varias seguidad, tiene el rival, no sirve esa racha, y se resta lo sumado
+      } else if(estado.See_Casilla(i,j)==rival || estado.See_Casilla(i,j)==riv_bomb){ // si despues de varias seguidas, tiene el rival, no sirve esa racha, y se resta lo sumado
         switch(juntas){
           case 2: puntos-=4; break;
           case 3: puntos-=12; break;
@@ -146,7 +146,7 @@ int Dia(const Environment &estado, int jug){
             case 3: puntos+=12; break;
             default: ++puntos; //1
           }
-        } else if(estado.See_Casilla(i+k,j-k)==rival || estado.See_Casilla(i+k,j-k)==riv_bomb){ // si despues de varias seguidad, tiene el rival, no sirve esa racha, y se resta lo sumado
+        } else if(estado.See_Casilla(i+k,j-k)==rival || estado.See_Casilla(i+k,j-k)==riv_bomb){ // si despues de varias seguidas, tiene el rival, no sirve esa racha, y se resta lo sumado
           switch(juntas){
             case 2: puntos-=4; break;
             case 3: puntos-=12; break;
@@ -169,7 +169,7 @@ int Dia(const Environment &estado, int jug){
             case 3: puntos+=12; break;
             default: ++puntos; //1
           }
-        } else if(estado.See_Casilla(i+k,j+k)==rival || estado.See_Casilla(i+k,j+k)==riv_bomb){ // si despues de varias seguidad, tiene el rival, no sirve esa racha, y se resta lo sumado
+        } else if(estado.See_Casilla(i+k,j+k)==rival || estado.See_Casilla(i+k,j+k)==riv_bomb){ // si despues de varias seguidas, tiene el rival, no sirve esa racha, y se resta lo sumado
           switch(juntas){
             case 2: puntos-=4; break;
             case 3: puntos-=12; break;
